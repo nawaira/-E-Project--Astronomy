@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evolution of Earth</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+
+ /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #fff;
+  }
+  nav[role="navigation"] {
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    position: relative;
+  }
+
+    .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 56px;
+  }
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffcc00;
+    user-select: none;
+    cursor: default;
+    outline: none;
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 30px;
+    width: 36px;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    height: 3px;
+    background: #ffcc00;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  /* Navigation links container */
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    padding-left: 0;
+  }
+  .nav-links li {
+    position: relative;
+  }
+  
+  .nav-links a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: #eee;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background-color: #333;
+    outline: none;
+  }
+ 
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    position: absolute;
+    background-color: #292929;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    display: none;
+    flex-direction: column;
+    border-radius: 0 0 4px 4px;
+    z-index: 999;
+  }
+  .dropdown-menu a {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+ 
+  .dropdown-menu a:last-child {
+    border-bottom: none;
+  }
+  /* Show dropdown on hover for desktop */
+  .dropdown:hover > .dropdown-menu,
+  .dropdown:focus-within > .dropdown-menu {
+    display: flex;
+  }
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+      margin-left: auto;
+    }
+  .nav-links {
+      flex-direction: column;
+      position: absolute;
+      background-color: #1f1f1f;
+      top: 56px;
+      left: 0;
+      width: 100%;
+      display: none;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-links li {
+      width: 100%;
+    }
+    .nav-links a {
+      padding: 1rem;
+      border-top: 1px solid #333;
+    }
+    /* Dropdown menu full width on mobile */
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      background-color: #2b2b2b;
+      border-radius: 0;
+      display: none !important;
+      width: 100%;
+    }
+    .dropdown-menu.show {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+
+    /* earth */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: url('bg.gif') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 4em;
+      background: linear-gradient(to right, #f0f0f0, #00f9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 2s ease-in;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #aef;
+    }
+
+    p {
+      font-size: 1.4em;
+      line-height: 1.9;
+    }
+
+    .image-section {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .image-section img {
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .fade {
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    .fixed-rock {
+      position: fixed;
+      left: 0;
+      top: 150px; 
+      z-index: 10;
+      width: 120px; 
+      height: 120px; 
+      background: linear-gradient(145deg, #444, #666); 
+      border-radius: 50%; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transform: rotate(15deg);
+    }
+
+    .fixed-rock::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 30px;
+      width: 30px;
+      height: 30px;
+      background: #333;
+      border-radius: 50%;
+    }
+
+    .fixed-rock::after {
+      content: "";
+      position: absolute;
+      bottom: 10px;
+      right: 30px;
+      width: 20px;
+      height: 20px;
+      background: #333;
+      border-radius: 50%;
+    }
+    .bg1{background-image: url("asteroides gif/a.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top 10px right 10px;
+}
+.bg2{background-image: url("asteroides gif/c.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom 0px left 0px;
+
+}
+
+/* footer */
+
+footer {
+    background: linear-gradient(135deg, #3a4150, #242a38);
+    color: #d1d5db;
+    flex-shrink: 0;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .footer-section {
+    flex: 1 1 200px;
+    min-width: 180px;
+  }
+  .footer-section h4 {
+    color: #f3f4f6;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .footer-links,
+  .footer-social {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .footer-links li,
+  .footer-social li {
+    margin-bottom: 0.75rem;
+  }
+  .footer-links a {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-links a:hover,
+  .footer-links a:focus {
+    color: #60a5fa;
+    outline: none;
+  }
+
+  /* Social icons */
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #d1d5db;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+.footer{
+  column-count: 2;
+  /* column-gap: 0.5px; */
+}
+
+  /* Copyright */
+  .footer-bottom {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    background: #1c2029;
+    color: #6b7280;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-section {
+      text-align: center;
+    }
+    .footer-social {
+      justify-content: center;
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+
+  <nav role="navigation" aria-label="Main Navigation">
+    <div class="navbar-container custome-m">
+      <div class="brand" tabindex="0">Astronomy</div>
+      <div class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu" role="button"
+        tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navbar-menu">
+        <li><a href="../index.html" tabindex="0">Home</a></li>
+        <li><a href="../about/about.html" tabindex="0">About</a></li>
+        <li class="dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true" aria-expanded="false" tabindex="-1">Planets</a>
+          <ul class="dropdown-menu" aria-label="submenu">
+            <li><a href="../sunnn/main.html" tabindex="0">Sun</a></li>
+            <li><a href="../mercury/main.html" tabindex="0">Mercury</a></li>
+            <li><a href="../venus`/venus.html" tabindex="0">Venus</a></li>
+            <li><a href="../earth/earth.html" tabindex="0">Earth</a></li>
+            <li><a href="../mars/main.html" tabindex="0">Mars</a></li>
+            <li><a href="../jupiter/main.html" tabindex="0">Jupiter</a></li>
+            <li><a href="../satrun/index.html" tabindex="0">Saturn</a></li>
+            <li><a href="../uranus/index.html" tabindex="0">Uranus</a></li>
+            <li><a href="../Neptune/index.html" tabindex="0">Neptune</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true" aria-expanded="false" tabindex="-1">Categories</a>
+          <ul class="dropdown-menu" aria-label="submenu">
+            <li><a href="../theory/earthpage.html" tabindex="0">Evolution of Earth</a></li>
+            <li><a href="../theory/indexbigbank.html" tabindex="0">Big Bang Theory</a></li>
+          </ul>
+        </li>
+        <li><a href="../contact/index.html" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  
+<!-- earth -->
+  <header>
+    <h1>Evolution of Earth</h1>
+  </header>
+<div class="bg1">
+<div class="bg2 ">
+
+
+  <section class="fade">
+    <h2>What is Earth's Evolution?</h2>
+    <p>
+      The evolution of Earth refers to the gradual development of our planet from its formation over 4.5 billion years ago to its present state.
+      This process includes the planet’s formation, cooling, the development of oceans and atmosphere, the emergence of life, and the shaping of continents and climate systems.
+      Over this vast timespan, Earth has undergone dramatic geological and biological changes.
+      Catastrophic events like asteroid impacts and volcanic eruptions have shaped the planet's surface and environment.
+      The fossil record provides a glimpse into ancient life forms and their environments.
+      Earth's evolution is closely tied to the solar system and influenced by cosmic forces.
+      Understanding Earth's changes helps scientists predict future scenarios and better protect life on the planet.
+    </p>
+    <div class="image-section">
+      <img src="earth1.png" alt="Earth formation">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Formation of Earth</h2>
+    <p>
+      Around 4.6 billion years ago, Earth formed from a cloud of dust and gas orbiting the newly born Sun. These particles collided and stuck together,
+      gradually forming a large body. Gravity caused this mass to become spherical and heat up, leading to a molten, volcanic early Earth.
+      As the planet grew, heavier materials sank to the core, while lighter elements rose to form the crust.
+      This differentiation laid the foundation for Earth’s layered internal structure.
+      Violent impacts from space debris were common, constantly reshaping the surface.
+      During this time, the Moon is believed to have formed after a massive collision between Earth and a Mars-sized body.
+      The energy from these events created intense heat, keeping the young planet in a molten state for millions of years.
+    </p>
+    <div class="image-section">
+      <img src="earth2.png" class="img-fluid" alt="Formation of the planet">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Cooling and Ocean Formation</h2>
+    <p>
+      Over millions of years, Earth’s surface began to cool. Water vapor released from volcanic eruptions condensed to form rain, which eventually created oceans.
+      These early bodies of water played a key role in the next stage — the emergence of life.
+      The atmosphere also began to form, composed mainly of carbon dioxide, nitrogen, and water vapor.
+      Oceans helped moderate temperature and created chemical-rich environments ideal for chemical reactions.
+      Hydrothermal vents on the ocean floor may have provided the energy and conditions for life’s building blocks.
+      As Earth cooled further, solid crust began to stabilize, and primitive continents started to form.
+      This cooling period set the stage for the chemical and biological processes that would shape the planet's history.
+    </p>
+    <div class="image-section">
+      <img src="earth3.jpeg" class="img-fluid" alt="Early oceans on Earth">
+    </div>
+  </section>
+
+  <section class=" fade  rounded  " style="background-color: #000;  box-sizing: border-box; color: #fff; padding: 40px 0;">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <img src="gig.gif" class="img-fluid" alt="Earth Evolution GIF" style="max-height: 300px; border-radius: 10px;">
+      </div>
+      <div class="col-md-6  px-4 ">
+        <h2 style="color: #aef;">Fun Fact about Earth</h2>
+        <p>
+          Earth is the only known planet that supports life, thanks to its protective atmosphere and liquid water.
+          Its magnetic field shields us from harmful solar radiation, and plate tectonics recycle nutrients essential to life.
+          The perfect distance from the Sun allows for a stable climate and liquid oceans.
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Origin of Life</h2>
+    <p>
+      Simple microscopic life appeared about 3.8 billion years ago. These were single-celled organisms like bacteria that lived in oceans.
+      Over time, they evolved into more complex organisms, ultimately leading to plants, animals, and eventually humans.
+      Photosynthetic bacteria began producing oxygen, slowly changing Earth's atmosphere.
+      </p>
+    <div class="image-section">
+      <img src="earth4.jpg" class="img-fluid" alt="Origin of life">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Geological and Biological Evolution</h2>
+    <p>
+      Earth’s surface changed dramatically over billions of years due to tectonic activity, volcanic eruptions, erosion, and other natural forces.
+      Continents drifted apart. Life evolved into diverse forms. Mass extinctions, like that of dinosaurs, shaped the course of evolution.
+      Plate tectonics continuously reshape the planet, forming mountains and ocean basins.
+      Glacial and interglacial cycles influenced species survival and migration.
+      After each mass extinction, life rebounded with new and varied forms, showing nature’s resilience.
+      Dinosaurs once dominated the Earth, but after their extinction, mammals and birds flourished.
+      Biological evolution continues today, influenced by genetics, environment, and even human activity.
+    </p>
+    <div class="image-section">
+      <img src="kuch  nhi ata.jpg" class="img-fluid" alt="Geological change">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Modern Earth</h2>
+    <p>
+      Today, Earth is a vibrant planet teeming with life. It has a complex climate system, a protective atmosphere, and vast ecosystems.
+      Scientific study of Earth’s evolution helps us understand natural processes and our place in the universe.
+      Humans have explored almost every region, from the deep ocean to outer space.
+      Modern Earth faces environmental challenges like climate change and biodiversity loss.
+      Satellite imagery and space missions give us a global perspective of Earth’s condition.
+      Technological advancements help monitor and protect natural resources.
+      Earth's beauty and complexity remind us of the importance of conservation and sustainability.
+    </p>
+    <div class="image-section">
+      <img src="earthlat.webp" class="img-fluid" style="max-width: 60%;" alt="Modern Earth">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Future Earth</h2>
+    <p>
+      Scientists predict that in the distant future, Earth’s environment will undergo drastic changes due to both natural and human influences.
+      The Sun will gradually become hotter, and human technology might significantly alter ecosystems and even planetary processes.
+      In about 1–2 billion years, rising solar heat may evaporate the oceans.
+      Tectonic activity may slow as Earth's interior cools, reducing geological activity.
+      Climate models suggest dramatic shifts if greenhouse gas emissions remain unchecked.
+      Humanity might develop technologies to adapt or even relocate to other planets.
+      The fate of Earth depends on natural cosmic cycles and our actions as a species.
+    </p>
+    <div class="image-section">
+      <img src="earthfu1.avif" class="img-fluid" alt="Future Earth">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Human Impact</h2>
+    <p>
+      Human activity has drastically changed Earth's landscape, atmosphere, and biodiversity. Industrialization, deforestation, and pollution
+      contribute to climate change and species extinction. Awareness and sustainable practices are key to preserving Earth’s future.
+      Urbanization has led to habitat destruction and fragmentation.
+      The burning of fossil fuels increases greenhouse gas emissions, warming the planet.
+      Overfishing, plastic pollution, and mining further degrade ecosystems.
+      Conservation efforts, renewable energy, and reforestation offer hope for reversing damage.
+      Educating communities and enforcing environmental policies are essential for a sustainable future.
+    </p>
+    <div class="image-section">
+      <img src="gussa.avif" class="img-fluid" alt="Human Impact on Earth">
+    </div>
+  </section>
+</div>
+</div>
+
+<!-- footer -->
+
+
+
+<footer>
+  <div class="footer-container" role="contentinfo">
+    <section class="footer-section" aria-labelledby="footer-about">
+      <h4 id="footer-about">About Us</h4>
+      <p>
+Astronomy is the study of stars, planets, galaxies, and the universe beyond Earth. It helps us understand the origin, structure, and evolution of the cosmos
+      </p>
+    </section>
+
+    <section class="footer-section" aria-labelledby="footer-links">
+      <h4 id="footer-links">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about/about.html">About</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+      </ul>
+    </section>
+
+    <section class="footer-section" aria-labelledby="footer-social">
+      <h4 id="footer-links">Planets</h4>
+      <ul class="footer-links" style="list-style: none;">
+        <li><a href="../sunnn/main.html">Sun</a></li>
+        <li><a href="../mercury/main.html">Mercury</a></li>
+        <li><a href="../venus`/venus.html">Venus</a></li>
+        <li><a href="../earth/earth.html">Earth</a></li>
+        <li><a href="../mars/main.html">Mars</a></li>
+        <li><a href="../jupiter/main.html">Jupiter</a></li>
+        <li><a href="../satrun/index.html">Sapturn</a></li>
+        <li><a href="../uranus/index.html">Uranus</a></li>
+        <li><a href="../Neptune/index.html">Neptune</a></li>
+      </ul>
+    </section>
+    <section class="footer-section" aria-labelledby="footer-social">
+      <h4 id="footer-links">categories</h4>
+      <ul class="footer-links " style="list-style: none;">
+        <li><a href="../theory/earthpage.html">Evolution of Earth</a></li>
+        <li><a href="../theory/indexbigbank.html">Big bank theory</a></li>
+      </ul>
+        </section>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Astronomy Aptech. All rights reserved.
+  </div>
+</footer>
+     
+
+  <script>
+    const faders = document.querySelectorAll('.fade');
+    const appearOptions = {
+      threshold: 0.1
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.style.opacity = 1;
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

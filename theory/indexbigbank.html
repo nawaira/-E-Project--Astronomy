@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Big Bang Theory</title> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+
+    /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #fff;
+  }
+  nav[role="navigation"] {
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    position: relative;
+  }
+
+    .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 56px;
+  }
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffcc00;
+    user-select: none;
+    cursor: default;
+    outline: none;
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 30px;
+    width: 36px;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    height: 3px;
+    background: #ffcc00;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  /* Navigation links container */
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    padding-left: 0;
+  }
+  .nav-links li {
+    position: relative;
+  }
+  
+  .nav-links a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: #eee;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background-color: #333;
+    outline: none;
+  }
+ 
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    position: absolute;
+    background-color: #292929;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    display: none;
+    flex-direction: column;
+    border-radius: 0 0 4px 4px;
+    z-index: 999;
+  }
+  .dropdown-menu a {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+ 
+  .dropdown-menu a:last-child {
+    border-bottom: none;
+  }
+  /* Show dropdown on hover for desktop */
+  .dropdown:hover > .dropdown-menu,
+  .dropdown:focus-within > .dropdown-menu {
+    display: flex;
+  }
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+      margin-left: auto;
+    }
+  .nav-links {
+      flex-direction: column;
+      position: absolute;
+      background-color: #1f1f1f;
+      top: 56px;
+      left: 0;
+      width: 100%;
+      display: none;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-links li {
+      width: 100%;
+    }
+    .nav-links a {
+      padding: 1rem;
+      border-top: 1px solid #333;
+    }
+    /* Dropdown menu full width on mobile */
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      background-color: #2b2b2b;
+      border-radius: 0;
+      display: none !important;
+      width: 100%;
+    }
+    .dropdown-menu.show {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+
+    /* therory */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: url('asteroides gif/2.gif') no-repeat center center/cover;
+      height: 400px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 5em;
+      background: linear-gradient(to right, #f0f0f0, #ff69b4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 2s ease-in;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ffa;
+    }
+
+    p {
+      font-size: 1.4em;
+      line-height: 1.9;
+      color: white;
+    }
+
+    .image-section {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .image-section img {
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .fade {
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    .fixed-nebula {
+      position: fixed;
+      right: 0;
+      top: 150px;
+      z-index: 10;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #553, #775);
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+      transform: rotate(15deg);
+    }
+
+    .bg1 {
+      background-image: url('asteroides gif/1.gif');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      
+    }
+    /* .bg2 {
+      background-image: url("asteroides gif/3.gif");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: bottom 0px left 0px;
+      
+    } */
+ * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+    padding: 1rem;
+  }
+
+  /* Footer styles */
+  footer {
+    background: linear-gradient(135deg, #3a4150, #242a38);
+    color: #d1d5db;
+    flex-shrink: 0;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .footer-section {
+    flex: 1 1 200px;
+    min-width: 180px;
+  }
+  .footer-section h4 {
+    color: #f3f4f6;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .footer-links,
+  .footer-social {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .footer-links li,
+  .footer-social li {
+    margin-bottom: 0.75rem;
+  }
+  .footer-links a {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-links a:hover,
+  .footer-links a:focus {
+    color: #60a5fa;
+    outline: none;
+  }
+
+  /* Social icons */
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #d1d5db;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+.footer{
+  column-count: 2;
+  /* column-gap: 0.5px; */
+}
+
+  /* Copyright */
+  .footer-bottom {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    background: #1c2029;
+    color: #6b7280;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-section {
+      text-align: center;
+    }
+    .footer-social {
+      justify-content: center;
+    }
+  }
+    
+  </style>
+</head>
+<body>
+
+  <nav role="navigation" aria-label="Main Navigation">
+    <div class="navbar-container custome-m">
+      <div class="brand" tabindex="0">Astronomy</div>
+      <div class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu" role="button"
+        tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navbar-menu">
+        <li><a href="../index.html" tabindex="0">Home</a></li>
+        <li><a href="../about/about.html" tabindex="0">About</a></li>
+        <li class="dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true" aria-expanded="false" tabindex="-1">Planets</a>
+          <ul class="dropdown-menu" aria-label="submenu">
+            <li><a href="../sunnn/main.html" tabindex="0">Sun</a></li>
+            <li><a href="../mercury/main.html" tabindex="0">Mercury</a></li>
+            <li><a href="../venus`/venus.html" tabindex="0">Venus</a></li>
+            <li><a href="../earth/earth.html" tabindex="0">Earth</a></li>
+            <li><a href="../mars/main.html" tabindex="0">Mars</a></li>
+            <li><a href="../jupiter/main.html" tabindex="0">Jupiter</a></li>
+            <li><a href="../satrun/index.html" tabindex="0">Saturn</a></li>
+            <li><a href="../uranus/index.html" tabindex="0">Uranus</a></li>
+            <li><a href="../Neptune/index.html" tabindex="0">Neptune</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true" aria-expanded="false" tabindex="-1">Categories</a>
+          <ul class="dropdown-menu" aria-label="submenu">
+            <li><a href="../theory/earthpage.html" tabindex="0">Evolution of Earth</a></li>
+            <li><a href="../theory/indexbigbank.html" tabindex="0">Big Bang Theory</a></li>
+          </ul>
+        </li>
+        <li><a href="../contact/index.html" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <!-- theory -->
+  <header>
+    <h1>Big Bang Theory</h1>
+  </header>
+
+  <div class="bg1">
+  <div class="bg2">
+
+  <section class="fade">
+    <h2>What is the Big Bang?</h2>
+    <p>
+      The Big Bang Theory explains the beginning of the universe around 13.8 billion years ago from an extremely hot and dense point.
+      Space and time began expanding rapidly, forming all matter and energy we observe today. It marks the origin of everything — from galaxies to subatomic particles.
+      Observational evidence like redshift, cosmic microwave background, and elemental composition supports this theory.
+    </p>
+    <div class="image-section">
+      <img src="bigbang1.webp" alt="Birth of the Universe">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Time Zero & Cosmic Inflation</h2>
+    <p>
+      At time zero, the universe existed as a singularity — an infinitely dense point. A fraction of a second after, cosmic inflation expanded the universe faster than the speed of light.
+      This expansion smoothed and stretched space, laying the foundation for the large-scale structure of the universe.
+      Quantum fluctuations during inflation became the seeds of galaxies and cosmic structure.
+    </p>
+    <div class="image-section">
+      <img src="Time Zero & Cosmic Inflation.png" class="img-fluid" alt="Cosmic Inflation">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Formation of Matter</h2>
+    <p>
+      As the universe cooled, energy transformed into particles like quarks and electrons. These combined to form protons and neutrons.
+      Within minutes, light elements like hydrogen and helium formed — a process called Big Bang nucleosynthesis.
+      The universe was still a hot plasma, opaque to light until atoms formed and photons could travel freely.
+    </p>
+    <div class="image-section">
+      <img src="quarks_particles.jpg" class="img-fluid" alt="Formation of Matter">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Cosmic Microwave Background</h2>
+    <p>
+      About 380,000 years after the Big Bang, the universe cooled enough for neutral atoms to form. This released photons that now make up the cosmic microwave background (CMB).
+      The CMB is a faint glow seen in all directions and provides a snapshot of the early universe.
+      It offers key insights into the universe's composition, age, and development.
+    </p>
+    <div class="image-section">
+      <img src="plank.avif" class="img-fluid" alt="Cosmic Microwave Background">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Formation of Galaxies</h2>
+    <p>
+      Over hundreds of millions of years, small density fluctuations grew due to gravity, forming the first stars and galaxies.
+      These early galaxies were clumpy and irregular, later evolving into the structured spirals and ellipticals we see today.
+      Galaxies formed into clusters, which make up the cosmic web — the large-scale structure of the universe.
+    </p>
+    <div class="image-section">
+      <img src="Formation of Galaxies.jpg" class="img-fluid" alt="Galaxies Forming">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Modern Universe</h2>
+    <p>
+      Today, the universe continues to expand. Galaxies move apart as space itself stretches. Dark energy drives this acceleration.
+      We observe billions of galaxies with telescopes, some whose light has taken billions of years to reach us.
+      The universe is around 13.8 billion years old, with stars, planets, and black holes as part of its cosmic story.
+    </p>
+    <div class="image-section">
+      <img src="Modern Universe.jpg" class="img-fluid" style="max-width: 60%;" alt="Modern Universe">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Future of the Universe</h2>
+    <p>
+      The future depends on the universe's density and dark energy. If expansion continues, we may face a "Big Freeze" where stars burn out and galaxies drift apart.
+      Some theories suggest a "Big Rip," tearing everything apart. Others consider a "Big Crunch," a reversal of expansion.
+      Our understanding evolves with observation, but the fate of the cosmos remains one of the greatest mysteries.
+    </p>
+    <div class="image-section">
+      <img src="Future of the Universe.avif" class="img-fluid" alt="Future of the Universe">
+    </div>
+  </section>
+
+  <section class="fade">
+    <h2>Human Understanding</h2>
+    <p>
+      Human curiosity drives our quest to understand the universe. From Galileo’s telescope to the James Webb Space Telescope, we have expanded our cosmic view.
+      Observatories and space missions collect data on stars, galaxies, and cosmic background radiation.
+      The Big Bang Theory not only explains the universe’s origin but also inspires humanity’s place in the cosmos.
+    </p>
+    <div class="image-section">
+      <img src="lether.jpg" class="img-fluid" alt="Human Understanding">
+    </div>
+  </section>
+
+  </div>
+  </div>
+
+  
+   <footer>
+     <div class="footer-container" role="contentinfo">
+       <section class="footer-section" aria-labelledby="footer-about">
+         <h4 id="footer-about">About Us</h4>
+         <p>
+Astronomy is the study of stars, planets, galaxies, and the universe beyond Earth. It helps us understand the origin, structure, and evolution of the cosmos
+         </p>
+       </section>
+   
+       <section class="footer-section" aria-labelledby="footer-links">
+         <h4 id="footer-links">Quick Links</h4>
+         <ul class="footer-links">
+           <li><a href="../index.html">Home</a></li>
+           <li><a href="../about/about.html">About</a></li>
+           <li><a href="../contact/index.html">Contact</a></li>
+         </ul>
+       </section>
+   
+       <section class="footer-section" aria-labelledby="footer-social">
+         <h4 id="footer-links">Planets</h4>
+         <ul class="footer-links" style="list-style: none;">
+           <li><a href="../sunnn/main.html">Sun</a></li>
+           <li><a href="../mercury/main.html">Mercury</a></li>
+           <li><a href="../venus`/venus.html">Venus</a></li>
+           <li><a href="../earth/earth.html">Earth</a></li>
+           <li><a href="../mars/main.html">Mars</a></li>
+           <li><a href="../jupiter/main.html">Jupiter</a></li>
+           <li><a href="../satrun/index.html">Sapturn</a></li>
+           <li><a href="../uranus/index.html">Uranus</a></li>
+           <li><a href="../Neptune/index.html">Neptune</a></li>
+         </ul>
+       </section>
+       <section class="footer-section" aria-labelledby="footer-social">
+         <h4 id="footer-links">categories</h4>
+         <ul class="footer-links " style="list-style: none;">
+           <li><a href="../theory/earthpage.html">Evolution of Earth</a></li>
+           <li><a href="../theory/indexbigbank.html">Big bank theory</a></li>
+         </ul>
+           </section>
+     </div>
+     <div class="footer-bottom">
+       &copy;     &copy; 2025 Astronomy Aptech. All rights reserved.
+
+     </div>
+   </footer>
+
+      <script src="script.js"></script>
+    
+</body>
+</html>

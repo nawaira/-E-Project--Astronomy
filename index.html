@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Exploration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+
+/* Reset & base */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #fff;
+}
+nav[role="navigation"] {
+  background-color: #1f1f1f;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  position: relative;
+}
+
+  .navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  height: 56px;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffcc00;
+  user-select: none;
+  cursor: default;
+  outline: none;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  height: 30px;
+  width: 36px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  background: #ffcc00;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+/* Navigation links container */
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+  padding-left: 0;
+}
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  display: block;
+  padding: 0.8rem 1.2rem;
+  color: #eee;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: capitalize;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: #333;
+  outline: none;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  position: absolute;
+  background-color: #292929;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  display: none;
+  flex-direction: column;
+  border-radius: 0 0 4px 4px;
+  z-index: 999;
+}
+.dropdown-menu a {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+/* Show dropdown on hover for desktop */
+.dropdown:hover > .dropdown-menu,
+.dropdown:focus-within > .dropdown-menu {
+  display: flex;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+.nav-links {
+    flex-direction: column;
+    position: absolute;
+    background-color: #1f1f1f;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    display: none;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links a {
+    padding: 1rem;
+    border-top: 1px solid #333;
+  }
+  /* Dropdown menu full width on mobile */
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: #2b2b2b;
+    border-radius: 0;
+    display: none !important;
+    width: 100%;
+  }
+  .dropdown-menu.show {
+    display: flex !important;
+    flex-direction: column;
+  }
+}
+
+    body {
+      background-color: #0b0c10;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    .btn-indigo {
+      background-color: #6610f2;
+      color: white;
+    }
+    .btn-indigo:hover {
+      background-color: #520dc2;
+      color: white;
+    }
+    .bg-section {
+      background-color: #1c1c1e;
+    }
+    .news-badge {
+      background-color: #520dc2;
+      font-size: 0.75rem;
+    }
+
+/* footer */
+footer {
+      background: linear-gradient(135deg, #3a4150, #242a38);
+      color: #d1d5db;
+      flex-shrink: 0;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .footer-section {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
+    .footer-section h4 {
+      color: #f3f4f6;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .footer-links,
+    .footer-social {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .footer-links li,
+    .footer-social li {
+      margin-bottom: 0.75rem;
+    }
+    .footer-links a {
+      color: #d1d5db;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus {
+      color: #60a5fa;
+      outline: none;
+    }
+  
+    /* Social icons */
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #d1d5db;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+  .footer{
+    column-count: 2;
+    /* column-gap: 0.5px; */
+  }
+  
+    /* Copyright */
+    .footer-bottom {
+      text-align: center;
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      background: #1c2029;
+      color: #6b7280;
+    }
+  
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-section {
+        text-align: center;
+      }
+      .footer-social {
+        justify-content: center;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <nav role="navigation" aria-label="Main Navigation">
+    <div class="navbar-container custome-m">
+      <div class="brand" tabindex="0">Astronomy</div>
+      <div class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu" role="button"
+        tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navbar-menu">
+        <li><a href="../index.html" tabindex="0">Home</a></li>
+        <li><a href="../about/about.html" tabindex="0">About</a></li>
+        <li class="dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true" aria-expanded="false" tabindex="-1">Planets</a>
+          <ul class="dropdown-menu" aria-label="submenu">
+            <li><a href="../sunnn/main.html" tabindex="0">Sun</a></li>
+            <li><a href="../mercury/main.html" tabindex="0">Mercury</a></li>
+            <li><a href="../venus`/venus.html" tabindex="0">Venus</a></li>
+            <li><a href="../earth/earth.html" tabindex="0">Earth</a></li>
+            <li><a href="../mars/main.html" tabindex="0">Mars</a></li>
+            <li><a href="../jupiter/main.html" tabindex="0">Jupiter</a></li>
+            <li><a href="../satrun/index.html" tabindex="0">Saturn</a></li>
+            <li><a href="../uranus/index.html" tabindex="0">Uranus</a></li>
+            <li><a href="../Neptune/index.html" tabindex="0">Neptune</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" tabindex="0">
+          <a href="#" aria-haspopup="true" aria-expanded="false" tabindex="-1">Categories</a>
+          <ul class="dropdown-menu" aria-label="submenu">
+            <li><a href="../theory/earthpage.html" tabindex="0">Evolution of Earth</a></li>
+            <li><a href="../theory/indexbigbank.html" tabindex="0">Big Bang Theory</a></li>
+          </ul>
+        </li>
+        <li><a href="../contact/index.html" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-white">
+    <div class="hero-content container">
+      <h1 class="display-4 fw-bold">Explore The Astronomy</h1>
+      <p class="lead">Journey through planets, constellations, cosmic theories, and the latest astronomical discoveries</p>
+      <a href="#planets" class="btn btn-indigo btn-lg mt-3">Begin Your Cosmic Journey</a>
+    </div>
+  </section>
+
+  <!-- Cosmic Theories Section -->
+  <section class="py-5 bg-section">
+    <div class="container">
+      <h2 class="text-center section-title">Cosmic Theories</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card bg-dark text-white h-100">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1500&q=80" class="card-img-top" alt="Big Bang" />
+            <div class="card-body">
+              <h5 class="card-title">The Big Bang Theory</h5>
+              <p class="card-text">Explore how the universe began from a dense, hot state 13.8 billion years ago.</p>
+              <a href="./theory/indexbigbank.html" class="text-indigo">Learn more →</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card bg-dark text-white h-100">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1500&q=80" class="card-img-top" alt="Earth Evolution" />
+            <div class="card-body">
+              <h5 class="card-title">Evolution of Earth</h5>
+              <p class="card-text">Discover how Earth evolved into a vibrant, life-supporting world.</p>
+              <a href="./theory/earthpage.html" class="text-indigo">Learn more →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planets Section -->
+  <section id="planets" class="py-5">
+    <div class="container">
+      <h2 class="text-center section-title">Explore Our Solar System</h2>
+      <p class="text-center mb-5">Learn about the planets that make up our cosmic neighborhood.</p>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <!-- One example, repeat for each planet -->
+        <div class="col">
+          <div class="card bg-dark text-white h-100">
+            <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Mercury" />
+            <div class="card-body">
+              <h5 class="card-title">Saturn</h5>
+              <p class="card-text">Smallest and innermost planet in the Solar System.</p>
+              <a href="./satrun/index.html" class="text-indigo">Discover more →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card bg-dark text-white h-100">
+            <img src="istockphoto-1222770616-640x640.avif" class="card-img-top" alt="Venus" />
+            <div class="card-body">
+              <h5 class="card-title">Venus</h5>
+              <p class="card-text">Smallest and innermost planet in the Solar System.</p>
+              <a href="./venus`/venus.html" class="text-indigo">Discover more →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card bg-dark text-white h-100">
+            <img src="istockphoto-1371476360-612x612.jpg" class="card-img-top" alt="Earth" />
+            <div class="card-body">
+              <h5 class="card-title">Earth</h5>
+              <p class="card-text">Smallest and innermost planet in the Solar System.</p>
+              <a href="./earth/earth.html" class="text-indigo">Discover more →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card bg-dark text-white h-100">
+            <img src="istockphoto-139084066-612x612 3.jpg" class="card-img-top" alt="jupiter" />
+            <div class="card-body">
+              <h5 class="card-title">jupiter</h5>
+              <p class="card-text">Smallest and innermost planet in the Solar System.</p>
+              <a href="./jupiter/main.html" class="text-indigo">Discover more →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Repeat for Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Constellations Section -->
+  <section class="py-5 bg-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-md-6">
+          <h2 class="section-title">Discover the solar-system</h2>
+          <p>Study of celestial bodies, universe structure, cosmic origins, star life cycles, galaxies, planets, and space.</p>
+          <a href="./solar-system/index.html" class="btn btn-indigo">Explore solar-system </a>
+        </div>
+        <div class="col-md-6">
+          <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1500&q=80" class="img-fluid rounded" alt="Stars" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container" role="contentinfo">
+      <section class="footer-section" aria-labelledby="footer-about">
+        <h4 id="footer-about">About Us</h4>
+        <p>
+Astronomy is the study of stars, planets, galaxies, and the universe beyond Earth. It helps us understand the origin, structure, and evolution of the cosmos
+        </p>
+      </section>
+  
+      <section class="footer-section" aria-labelledby="footer-links">
+        <h4 id="footer-links">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about/about.html">About</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </section>
+  
+      <section class="footer-section" aria-labelledby="footer-social">
+        <h4 id="footer-links">Planets</h4>
+        <ul class="footer-links" style="list-style: none;">
+          <li><a href="../sunnn/main.html">Sun</a></li>
+          <li><a href="../mercury/main.html">Mercury</a></li>
+          <li><a href="../venus`/venus.html">Venus</a></li>
+          <li><a href="../earth/earth.html">Earth</a></li>
+          <li><a href="../mars/main.html">Mars</a></li>
+          <li><a href="../jupiter/main.html">Jupiter</a></li>
+          <li><a href="../satrun/index.html">Sapturn</a></li>
+          <li><a href="../uranus/index.html">Uranus</a></li>
+          <li><a href="../Neptune/index.html">Neptune</a></li>
+        </ul>
+      </section>
+      <section class="footer-section" aria-labelledby="footer-social">
+        <h4 id="footer-links">categories</h4>
+        <ul class="footer-links " style="list-style: none;">
+          <li><a href="../theory/earthpage.html">Evolution of Earth</a></li>
+          <li><a href="../theory/indexbigbank.html">Big bank theory</a></li>
+        </ul>
+          </section>
+    </div>
+    <div class="footer-bottom">
+      &copy;     &copy; 2025 Astronomy Aptech. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+        
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      const dropdowns = document.querySelectorAll('.dropdown');
+      // Toggle nav menu on hamburger click
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+      // Dropdown toggling on mobile
+      dropdowns.forEach(dropdown => {
+        const toggleLink = dropdown.querySelector('a');
+        const submenu = dropdown.querySelector('.dropdown-menu');
+        toggleLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          if(window.innerWidth <= 768) {
+             const isShown = submenu.classList.contains('show');
+            // Hide all dropdowns first
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+              if(menu !== submenu) menu.classList.remove('show');
+            });
+            if (!isShown) {
+              submenu.classList.add('show');
+              toggleLink.setAttribute('aria-expanded', 'true');
+            } else {
+              submenu.classList.remove('show');
+              toggleLink.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+      // Close dropdowns if clicking outside on mobile
+      document.addEventListener('click', (event) => {
+        if(window.innerWidth <= 768) {
+          if (!event.target.closest('.dropdown')) {
+             document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+              menu.classList.remove('show');
+            });
+            document.querySelectorAll('.dropdown > a').forEach(link => {
+              link.setAttribute('aria-expanded', 'false');
+            });
+          }
+        }
+      });
+      // Close mobile menu if resizing from mobile to desktop
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 768) {
+          navLinks.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+          });
+          document.querySelectorAll('.dropdown > a').forEach(link => {
+            link.setAttribute('aria-expanded', 'false'); });
+        }
+      });
+    });
+        </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
